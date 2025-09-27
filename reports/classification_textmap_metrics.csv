@@ -1,13 +1,3 @@
-Model,Metric,Score
-LogisticRegression,Precision,1.0
-LogisticRegression,Recall,1.0
-LogisticRegression,F1,1.0
-SGDClassifier,Precision,1.0
-SGDClassifier,Recall,0.997979797979798
-SGDClassifier,F1,0.9989888776541962
-KNN,Precision,0.9959677419354839
-KNN,Recall,0.997979797979798
-KNN,F1,0.9969727547931383
-DecisionTree,Precision,1.0
-DecisionTree,Recall,1.0
-DecisionTree,F1,1.0
+version https://git-lfs.github.com/spec/v1
+oid sha256:0fb4cb3770fc3971c7008bc23bee832e1c28a9ad1cb7170a61ac8fd1ee854723
+size 383
