@@ -1,0 +1,78 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: py src/preprocess.py
+    deps:
+    - path: data/raw/zomato_df_final_data.csv
+      hash: md5
+      md5: 6bb696eac5889d15f134cee5ff09eb5d
+      size: 2690897
+    - path: src/preprocess.py
+      hash: md5
+      md5: 435de5258fcbc0970fa9cc13b93e673a
+      size: 883
+    outs:
+    - path: data/processed/clean.csv
+      hash: md5
+      md5: 4d0287ec6adb466685be5ca91770d54c
+      size: 2726818
+  feature_engineering:
+    cmd: py src/features.py
+    deps:
+    - path: data/processed/clean.csv
+      hash: md5
+      md5: 4d0287ec6adb466685be5ca91770d54c
+      size: 2726818
+    - path: src/features.py
+      hash: md5
+      md5: 27cd699cb71221d5d1761b51e17eb88c
+      size: 1200
+    outs:
+    - path: data/processed/features.csv
+      hash: md5
+      md5: 078d58c6f4ea003a299affe70ed6b083
+      size: 2798587
+  modelling:
+    cmd: py src/model.py
+    deps:
+    - path: data/processed/features.csv
+      hash: md5
+      md5: 078d58c6f4ea003a299affe70ed6b083
+      size: 2798587
+    - path: src/model.py
+      hash: md5
+      md5: 7581eda43b3decdb7a012fe50f637863
+      size: 3325
+    outs:
+    - path: reports/classification_metrics_logit_only.csv
+      hash: md5
+      md5: 607fcc123fbd3962de4cd5e60523f91a
+      size: 59
+    - path: reports/regression_sklearn_mse.txt
+      hash: md5
+      md5: 5f938b91313063cd1f67162ea8db44ac
+      size: 14
+  evaluation:
+    cmd: py src/evaluate.py
+    deps:
+    - path: reports/classification_metrics_logit_only.csv
+      hash: md5
+      md5: 607fcc123fbd3962de4cd5e60523f91a
+      size: 59
+    - path: reports/regression_sklearn_mse.txt
+      hash: md5
+      md5: 5f938b91313063cd1f67162ea8db44ac
+      size: 14
+    - path: src/evaluate.py
+      hash: md5
+      md5: 87874530590bf1fbacb02a8a78db709c
+      size: 968
+    outs:
+    - path: reports/classification_metrics.csv
+      hash: md5
+      md5: 607fcc123fbd3962de4cd5e60523f91a
+      size: 59
+    - path: reports/regression_summary.csv
+      hash: md5
+      md5: f8cff2a581e164153ede719b6416d937
+      size: 48
