@@ -1,0 +1,35 @@
+stages:
+  preprocess:
+    cmd: py src/preprocess.py
+    deps:
+      - data/raw/zomato_df_final_data.csv
+      - src/preprocess.py
+    outs:
+      - data/processed/clean.csv
+
+  feature_engineering:
+    cmd: py src/features.py
+    deps:
+      - data/processed/clean.csv
+      - src/features.py
+    outs:
+      - data/processed/features.csv
+
+  modelling:
+    cmd: py src/model.py
+    deps:
+      - data/processed/features.csv
+      - src/model.py
+    outs:
+      - reports/regression_sklearn_mse.txt
+      - reports/classification_metrics_logit_only.csv
+
+  evaluation:
+    cmd: py src/evaluate.py
+    deps:
+      - reports/regression_sklearn_mse.txt
+      - reports/classification_metrics_logit_only.csv
+      - src/evaluate.py
+    outs:
+      - reports/regression_summary.csv
+      - reports/classification_metrics.csv
