@@ -1,10 +1,35 @@
-# u3277561_Assignment01
+# Predictive Modelling and Deployment – Assignment 1
 
-How to run:
-1) Install deps: `py -m pip install -r requirements.txt`
-2) Open and run `assignment.ipynb` (Parts A & B). Outputs go to `reports/`.
-3) Reproduce pipeline: `dvc repro`.
+**Student ID:** u3277561  
 
-Results (from the notebook):
-- Regression MSE: sklearn ~0.000487, manual GD ~0.028640
-- Classification F1: Logistic & DecisionTree = 1.0; SGD ≈ 0.999; KNN ≈ 0.996
+This project demonstrates an end-to-end data science workflow including:  
+- Exploratory Data Analysis (EDA)  
+- Predictive Modelling (Regression + Classification)  
+- Reproducibility with Git & DVC  
+
+---
+
+##  Project Structure
+```u3277561_Assignment01/
+├── data/                 # Raw + processed datasets (DVC-tracked)
+├── reports/              # Regression & classification results (DVC outputs)
+├── src/                  # Python scripts
+│   ├── preprocess.py
+│   ├── features.py
+│   ├── model.py
+│   └── evaluate.py
+├── dvc.yaml              # DVC pipeline definition
+├── dvc.lock              # DVC pipeline lockfile
+├── requirements.txt      # Python dependencies
+└── README.md             # Project documentation
+
+```
+## Installation
+```bash
+git clone <repo-url>
+cd u3277561_Assignment01
+py -m venv venv
+venv\Scripts\activate
+py -m pip install -r requirements.txt
+
+
